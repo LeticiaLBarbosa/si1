@@ -1,35 +1,53 @@
 import static org.junit.Assert.*;
+
+import java.util.HashMap;
+
 import junit.framework.Assert;
 
 import org.junit.Before;
 import org.junit.Test;
 
 public class TestConversorDeNumeros {
-
+	 Conversor c;
 	@Before
 	public void setUP() {
-
+		c = new Conversor();
 	}
 
 	@Test
 	public void testaConverterDeZeroAdez() {
-		Conversor c = new Conversor();
-		
-		assertEquals("zero", c.converteParaExtenso("0"));
-		assertEquals("um", c.converteParaExtenso("1"));
-		assertEquals("dois", c.converteParaExtenso("2"));
-		assertEquals("tres", c.converteParaExtenso("3"));
-		assertEquals("quatro", c.converteParaExtenso("4"));
-		assertEquals("cinco", c.converteParaExtenso("5"));
-		assertEquals("seis", c.converteParaExtenso("6"));
-		assertEquals("sete", c.converteParaExtenso("7"));
-		assertEquals("oito", c.converteParaExtenso("8"));
-		assertEquals("nove", c.converteParaExtenso("9"));
-		assertEquals("dez", c.converteParaExtenso("10"));
+		String[] extenso = { "zero", "um", "dois", "tres", "quatro", "cinco",
+				"seis", "sete", "oito", "nove", "dez"};
+
+		for (int numero = 0; numero < 11; numero++) {
+			assertEquals(extenso[numero], c.converteParaExtenso(Integer.toString(numero)));
+		}
 	}
 	
+	@Test
 	public void testaConverterComUmaPalavra(){
 		
+		String[] extenso = { "zero", "um", "dois", "tres", "quatro", "cinco",
+				"seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze",
+				"catorze", "quinze", "dezesseis", "dezessete", "dezoito",
+				"dezenove", "vinte", "trinta", "quarenta", "cinquenta",
+				"sessenta", "setenta", "oitenta", "noventa", "cem", "duzentos",
+				"trezentos", "quatrocentos", "quinhentos", "seiscentos",
+				"setecentos", "oitocentos", "novecentos", "mil" };
+
+		for (int numero = 0; numero < 21; numero++) {
+			assertEquals(extenso[numero], c.converteParaExtenso(Integer.toString(numero)));
+		}
+		int contador = 30;
+		for (int numero = 21; numero < 29; numero++) {
+			assertEquals(extenso[numero], c.converteParaExtenso(Integer.toString(contador)));
+			contador += 10;
+		}
+		contador = 200;
+		for (int numero = 29; numero < 38; numero++) {
+			assertEquals(extenso[numero], c.converteParaExtenso(Integer.toString(contador)));
+			contador += 100;
+		}
 	}
 
 }
