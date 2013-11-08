@@ -39,20 +39,26 @@ public class Conversor {
 				} else {
 					if (inteiro.length() == 2) {
 						if ((inteiro.charAt(0) + "").equals("0")) {
-							result = numeros.get(inteiro.charAt(1) + "");
+							result = ""
+									+ converteParaExtenso(inteiro.substring(1));
 						} else {
 							result = numeros.get(inteiro.charAt(0) + "0")
 									+ " e "
 									+ numeros.get(inteiro.charAt(1) + "");
 						}
 					} else if (inteiro.length() == 3) {
-						if (inteiro.charAt(0) + "" != "1") {
+						if ((inteiro.charAt(0) + "").equals("0")) {
+							result = ""
+									+ converteParaExtenso(inteiro.substring(1));
+						} else if (inteiro.charAt(0) + "" != "1") {
 
 							result = numeros.get(inteiro.charAt(0) + "00")
 									+ " e "
 									+ converteParaExtenso(inteiro.substring(1));
-						} else {
-							result = "cento e "
+						}
+					} else if (inteiro.length() == 4) {
+						if ((inteiro.charAt(0) + "").equals("1")) {
+							result = "mil e "
 									+ converteParaExtenso(inteiro.substring(1));
 						}
 					}

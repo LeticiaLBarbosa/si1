@@ -92,4 +92,12 @@ public class TestConversorDeNumeros {
 		assertEquals("novecentos e noventa e nove", c.converteParaExtenso("999"));
 	}
 	
+	@Test
+	public void testaDe1001a1099() throws Exception{
+		assertEquals("mil e um", c.converteParaExtenso("1001"));
+		assertEquals("mil e trinta e cinco", c.converteParaExtenso("1035"));
+		assertEquals("mil e setenta", c.converteParaExtenso("1070"));
+		assertEquals("mil e noventa e nove", c.converteParaExtenso("1099"));
+	}
+
 }
