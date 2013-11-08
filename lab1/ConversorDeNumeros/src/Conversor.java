@@ -4,7 +4,7 @@ public class Conversor {
 
 	public String converteParaExtenso(String inteiro) throws Exception {
 		String result = "";
-		if (!inteiro.equals("")) {
+		if (!inteiro.trim().equals("")) {
 			try {
 				Integer.parseInt(inteiro);
 				HashMap<String, String> numeros = new HashMap<>();
@@ -17,20 +17,28 @@ public class Conversor {
 						"quatrocentos", "quinhentos", "seiscentos",
 						"setecentos", "oitocentos", "novecentos", "mil" };
 
-				for (int numero = 0; numero < 21; numero++) {
-					numeros.put(Integer.toString(numero), extenso[numero]);
+				for (int i = 0; i < 21; i++) {
+					numeros.put(Integer.toString(i), extenso[i]);
 				}
 				int contador = 30;
-				for (int numero = 21; numero < 29; numero++) {
-					numeros.put(Integer.toString(contador), extenso[numero]);
+				for (int i = 21; i < 29; i++) {
+					numeros.put(Integer.toString(contador), extenso[i]);
 					contador += 10;
 				}
 				contador = 200;
-				for (int numero = 29; numero < 38; numero++) {
-					numeros.put(Integer.toString(contador), extenso[numero]);
+				for (int i = 29; i < 38; i++) {
+					numeros.put(Integer.toString(contador), extenso[i]);
 					contador += 100;
 				}
-				result = numeros.get(inteiro);
+
+				if (numeros.get(inteiro) != null){
+					result = numeros.get(inteiro);
+				}
+				else {
+					if (inteiro.length() == 2){
+						result = numeros.get(inteiro.charAt(0)+"0") + " e " + numeros.get(inteiro.charAt(1)+"");
+					}
+				}
 			} catch (Exception e) {
 				throw new Exception("Entrada invalida");
 			}
