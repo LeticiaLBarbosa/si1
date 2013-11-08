@@ -7,13 +7,16 @@ public class Conversor {
 		if (!inteiro.trim().equals("")) {
 			try {
 				Integer.parseInt(inteiro);
+				if (inteiro.equals("100")) {
+					return "cem";
+				}
 				HashMap<String, String> numeros = new HashMap<>();
 				String[] extenso = { "zero", "um", "dois", "tres", "quatro",
 						"cinco", "seis", "sete", "oito", "nove", "dez", "onze",
 						"doze", "treze", "catorze", "quinze", "dezesseis",
 						"dezessete", "dezoito", "dezenove", "vinte", "trinta",
 						"quarenta", "cinquenta", "sessenta", "setenta",
-						"oitenta", "noventa", "cem", "duzentos", "trezentos",
+						"oitenta", "noventa", "cento", "duzentos", "trezentos",
 						"quatrocentos", "quinhentos", "seiscentos",
 						"setecentos", "oitocentos", "novecentos", "mil" };
 
@@ -31,12 +34,27 @@ public class Conversor {
 					contador += 100;
 				}
 
-				if (numeros.get(inteiro) != null){
+				if (numeros.get(inteiro) != null) {
 					result = numeros.get(inteiro);
-				}
-				else {
-					if (inteiro.length() == 2){
-						result = numeros.get(inteiro.charAt(0)+"0") + " e " + numeros.get(inteiro.charAt(1)+"");
+				} else {
+					if (inteiro.length() == 2) {
+						if ((inteiro.charAt(0) + "").equals("0")) {
+							result = numeros.get(inteiro.charAt(1) + "");
+						} else {
+							result = numeros.get(inteiro.charAt(0) + "0")
+									+ " e "
+									+ numeros.get(inteiro.charAt(1) + "");
+						}
+					} else if (inteiro.length() == 3) {
+						if (inteiro.charAt(0) + "" != "1") {
+
+							result = numeros.get(inteiro.charAt(0) + "00")
+									+ " e "
+									+ converteParaExtenso(inteiro.substring(1));
+						} else {
+							result = "cento e "
+									+ converteParaExtenso(inteiro.substring(1));
+						}
 					}
 				}
 			} catch (Exception e) {

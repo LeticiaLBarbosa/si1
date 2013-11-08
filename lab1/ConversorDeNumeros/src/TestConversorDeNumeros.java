@@ -33,19 +33,20 @@ public class TestConversorDeNumeros {
 	@Test
 	public void testaConverterComUmaPalavra() throws Exception {
 
-		for (int numero = 0; numero < 21; numero++) {
-			assertEquals(extenso[numero],
-					c.converteParaExtenso(Integer.toString(numero)));
+		for (int i = 0; i < 21; i++) {
+			assertEquals(extenso[i],
+					c.converteParaExtenso(Integer.toString(i)));
 		}
 		int contador = 30;
-		for (int numero = 21; numero < 29; numero++) {
-			assertEquals(extenso[numero],
+		for (int i = 21; i < 28; i++) {
+			assertEquals(extenso[i],
 					c.converteParaExtenso(Integer.toString(contador)));
 			contador += 10;
 		}
+		assertEquals("cem", c.converteParaExtenso("100"));
 		contador = 200;
-		for (int numero = 29; numero < 38; numero++) {
-			assertEquals(extenso[numero],
+		for (int i = 29; i < 38; i++) {
+			assertEquals(extenso[i],
 					c.converteParaExtenso(Integer.toString(contador)));
 			contador += 100;
 		}
@@ -80,5 +81,15 @@ public class TestConversorDeNumeros {
 			}
 		}
 	}
-
+	
+	@Test
+	public void testaDe101a999() throws Exception{
+		assertEquals("cento e um", c.converteParaExtenso("101"));
+		assertEquals("trezentos e noventa e tres", c.converteParaExtenso("393"));
+		assertEquals("quinhentos e sete", c.converteParaExtenso("507"));
+		assertEquals("setecentos e vinte e dois", c.converteParaExtenso("722"));
+		assertEquals("novecentos e dois", c.converteParaExtenso("902"));
+		assertEquals("novecentos e noventa e nove", c.converteParaExtenso("999"));
+	}
+	
 }
