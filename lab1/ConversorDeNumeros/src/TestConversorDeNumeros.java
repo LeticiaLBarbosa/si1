@@ -14,18 +14,22 @@ public class TestConversorDeNumeros {
 	@Test
 	public void testaConverterDeZeroAdez() {
 		Conversor c = new Conversor();
-
-		assertEquals("zero", c.converteZeroAdez(0));
-		assertEquals("um", c.converteZeroAdez(1));
-		assertEquals("dois", c.converteZeroAdez(2));
-		assertEquals("tres", c.converteZeroAdez(3));
-		assertEquals("quatro", c.converteZeroAdez(4));
-		assertEquals("cinco", c.converteZeroAdez(5));
-		assertEquals("seis", c.converteZeroAdez(6));
-		assertEquals("sete", c.converteZeroAdez(7));
-		assertEquals("oito", c.converteZeroAdez(8));
-		assertEquals("nove", c.converteZeroAdez(9));
-		assertEquals("dez", c.converteZeroAdez(10));
+		
+		assertEquals("zero", c.converteParaExtenso("0"));
+		assertEquals("um", c.converteParaExtenso("1"));
+		assertEquals("dois", c.converteParaExtenso("2"));
+		assertEquals("tres", c.converteParaExtenso("3"));
+		assertEquals("quatro", c.converteParaExtenso("4"));
+		assertEquals("cinco", c.converteParaExtenso("5"));
+		assertEquals("seis", c.converteParaExtenso("6"));
+		assertEquals("sete", c.converteParaExtenso("7"));
+		assertEquals("oito", c.converteParaExtenso("8"));
+		assertEquals("nove", c.converteParaExtenso("9"));
+		assertEquals("dez", c.converteParaExtenso("10"));
+	}
+	
+	public void testaConverterComUmaPalavra(){
+		
 	}
 
 }
