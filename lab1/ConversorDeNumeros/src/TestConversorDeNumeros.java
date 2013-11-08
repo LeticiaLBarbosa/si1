@@ -1,9 +1,5 @@
 import static org.junit.Assert.*;
 
-import java.util.HashMap;
-
-import junit.framework.Assert;
-
 import org.junit.Before;
 import org.junit.Test;
 
@@ -15,7 +11,7 @@ public class TestConversorDeNumeros {
 	}
 
 	@Test
-	public void testaConverterDeZeroAdez() {
+	public void testaConverterDeZeroAdez() throws Exception{
 		String[] extenso = { "zero", "um", "dois", "tres", "quatro", "cinco",
 				"seis", "sete", "oito", "nove", "dez"};
 
@@ -25,7 +21,7 @@ public class TestConversorDeNumeros {
 	}
 	
 	@Test
-	public void testaConverterComUmaPalavra(){
+	public void testaConverterComUmaPalavra() throws Exception{
 		
 		String[] extenso = { "zero", "um", "dois", "tres", "quatro", "cinco",
 				"seis", "sete", "oito", "nove", "dez", "onze", "doze", "treze",
@@ -47,6 +43,26 @@ public class TestConversorDeNumeros {
 		for (int numero = 29; numero < 38; numero++) {
 			assertEquals(extenso[numero], c.converteParaExtenso(Integer.toString(contador)));
 			contador += 100;
+		}
+	}
+	
+	@Test
+	public void testaEntradaVazia(){
+		try{
+			c.converteParaExtenso("");
+			fail();
+		}catch(Exception e){
+			assertEquals(e.getMessage(), "Entrada vazia");
+		}
+	}
+	
+	@Test
+	public void testaEntradaInvalida(){
+		try{
+			System.out.println(c.converteParaExtenso("ola"));
+			fail();
+		}catch(Exception e){
+			assertEquals(e.getMessage(), "Entrada invalida");
 		}
 	}
 
