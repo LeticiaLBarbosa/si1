@@ -6,6 +6,10 @@ libraryDependencies ++= Seq(
   javaJdbc,
   javaEbean,
   cache
+)
+
+val appDependencies = Seq(
+  javaJdbc
 )     
 
 play.Project.playJavaSettings
