@@ -6,23 +6,62 @@
     
     <h1>@tasks.size() Atividades(s)</h1>
     
+    <h2> Tarefa(s) a fazer: </h2>
+    
     <ul>
         @for(task <- tasks) {
+        	@if(!task.isDone()){
             <li>
-                @task.label
+                <b>Título:</b> @task.getLabel()
+                <br>
+                <b>Descricao:</b> @task.getDescription()
+                <br>
+                <b>Projeto:</b> @task.getProject()
+                <br>
+                <b>Prioridade:</b> @task.getPriority()
                 
-                @form(routes.Application.deleteTask(task.id)) {
+                @form(routes.Application.deleteTask(task.getId())) {
                     <input type="submit" value="Deletar">
                 }
+                
+                @form(routes.Application.makeItDone(task.getId())){
+                	<input type="submit" value="Feita">
+                }
+                <br>
             </li>
-        }
+        }}
+    </ul>
+    
+    <h2> Tarefa(s) realizada(s): </h2>
+    
+    <ul>
+        @for(task <- tasks) {
+        	@if(task.isDone()){
+            <li>
+                <b>Título:</b> @task.getLabel()
+                <br>
+                <b>Descricao:</b> @task.getDescription()
+                <br>
+                <b>Projeto:</b> @task.getProject()
+                <br>
+                <b>Prioridade:</b> @task.getPriority()
+                
+                @form(routes.Application.deleteTask(task.getId())) {
+                    <input type="submit" value="Deletar">
+                }
+                <br>
+            </li>
+        }}
     </ul>
     
     <h2>Adicione uma nova atividade</h2>
     
     @form(routes.Application.newTask()) {
         
-        @inputText(taskForm("Título")) 
+        @inputText(taskForm("label"), '_label -> "Título:") 
+        @inputText(taskForm("project"), '_label -> "Projeto:")
+        @inputText(taskForm("description"), '_label -> "Descrição:")
+        @inputText(taskForm("priority"), '_label -> "Prioridade:")  
         
         <input type="submit" value="Criar">
         

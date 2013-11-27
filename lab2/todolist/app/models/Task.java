@@ -14,7 +14,12 @@ public class Task extends Model {
 	public Long id;
 
 	@Required
-	public String label;
+	public String label, project, description;
+	
+	@Required
+	public int priority;
+	
+	private boolean done = false;
 
 	public static Finder<Long, Task> find = new Finder(Long.class, Task.class);
 
@@ -28,6 +33,41 @@ public class Task extends Model {
 
 	public static void delete(Long id) {
 		find.ref(id).delete();
+	}
+	
+	public static void makeItDone(Long id){
+		Task activity = find.ref(id);
+		
+		activity.setDone(true);
+		create(activity);
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public int getPriority() {
+		return priority;
+	}
+
+	public String getLabel() {
+		return label;
+	}
+
+	public String getProject() {
+		return project;
+	}
+	
+	public String getDescription() {
+		return description;
+	}
+	
+	public boolean isDone(){
+		return done;
+	}
+	
+	public void setDone(boolean done){
+		this.done = done;
 	}
 
 }
