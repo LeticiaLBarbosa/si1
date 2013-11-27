@@ -35,6 +35,7 @@
     <h2> Tarefa(s) realizada(s): </h2>
     
     <ul>
+    	
         @for(task <- tasks) {
         	@if(task.isDone()){
             <li>
@@ -54,14 +55,14 @@
         }}
     </ul>
     
-    <h2>Adicione uma nova atividade</h2>
+    <h2>Adicione uma nova atividade:</h2>
     
     @form(routes.Application.newTask()) {
         
-        @inputText(taskForm("label"), '_label -> "Título:") 
-        @inputText(taskForm("project"), '_label -> "Projeto:")
-        @inputText(taskForm("description"), '_label -> "Descrição:")
-        @inputText(taskForm("priority"), '_label -> "Prioridade:")  
+        @inputText(taskForm("label"), '_label -> <b>Título:</b>) 
+        @inputText(taskForm("project"), '_label -> <b>Projeto:</b>)
+        @inputText(taskForm("description"), '_label -> <b>Descrição:</b>)
+        @inputText(taskForm("priority"), '_label -> <b>Prioridade:</b>)  
         
         <input type="submit" value="Criar">
         
